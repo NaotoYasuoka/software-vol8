@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- This file is the template for "www/index.html". Modify it to fit your needs -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+
+  <!-- The following EJS lines include the necessary CSS and JS
+  from Monaca (cordova.js/ loader.js) in production mode -->
+<% for (var dep in htmlWebpackPlugin.options.externalJS) { %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.options.externalJS[dep] %>"></script><% } %>
+<% for (var dep in htmlWebpackPlugin.options.externalCSS) { %>
+  <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.options.externalCSS[dep] %>"><% } %>
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+  <script>
+    var firestore;
+    var onDeviceReady = function () {
+      var firebaseConfig = {
+        apiKey: "AIzaSyBJu2W9Mtxd4Hp3XtXN-AMI7dWfkwCgMYA",
+        authDomain: "software-vol8.firebaseapp.com",
+        databaseURL: "https://software-vol8.firebaseio.com",
+        projectId: "software-vol8",
+        storageBucket: "software-vol8.appspot.com",
+        messagingSenderId: "1025096550176",
+        appId: "1:1025096550176:web:510d7157e4bf5fdc35f945"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firestore = firebase.firestore();
+    };
+    document.addEventListener(
+      window.cordova ? "deviceready" : "DOMContentLoaded",
+      onDeviceReady,
+      false
+    );
+  </script>
+
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
